@@ -1,13 +1,15 @@
 # Author: Jose Cerrejon
 # Email: contact at ulysess dot gmail dot com
 # License: MIT
-# Version: 0.1.1
+# Version: 0.1.3
 
 import openai
+import config
 
-openai.api_key = "YOUR-API-KEY"
+openai.api_key = config.OPENAI_API_KEY
 
-print("""
+print(
+    """
 d8888b. d888888b db   dD  .d88b.  
 88  `8D   `88'   88 ,8P' .8P  Y8. 
 88oodD'    88    88,8P   88    88 
@@ -15,15 +17,17 @@ d8888b. d888888b db   dD  .d88b.
 88        .88.   88 `88. `8b  d8' 
 88      Y888888P YP   YD  `Y88P'  
 
-Version 0.1.PQR
+Version 0.2.PQR
 
 Hi! I'm PIKO!. The new AI created from the collective mind of trillons of flies.
 Type [exit] to exit the program or [imagine] to get a picture something you input.
-""")
+"""
+)
 
 
 def open_default_browser(url):
     import webbrowser
+
     webbrowser.open_new_tab(url)
 
 
@@ -36,9 +40,8 @@ def draw() -> str:
         exit()
 
     print("\nLet me draw something about that...\n")
-    answer = openai.Image.create(prompt=prompt,
-                                 size="1024x1024")
-    url = answer['data'][0]['url']
+    answer = openai.Image.create(prompt=prompt, size="1024x1024")
+    url = answer["data"][0]["url"]
     open_default_browser(url)
 
     return url
@@ -47,9 +50,9 @@ def draw() -> str:
 def answer(prompt) -> str:
     print("\nLet me think about that...")
 
-    answer = openai.Completion.create(engine="text-davinci-003",
-                                      prompt=prompt,
-                                      max_tokens=2048)
+    answer = openai.Completion.create(
+        engine="text-davinci-003", prompt=prompt, max_tokens=2048
+    )
     return answer.choices[0].text
 
 
