@@ -1,12 +1,12 @@
 # Author: Jose Cerrejon
 # Email: contact at ulysess dot gmail dot com
 # License: MIT
-# Version: 0.1.3
+# Version: 0.1.4
 
 import openai
 import config
 
-openai.api_key = config.OPENAI_API_KEY
+(openai.api_key, openai.engine) = (config.OPENAI_API_KEY, "gpt-3.5-turbo-instruct")
 
 print(
     """
@@ -51,7 +51,7 @@ def answer(prompt) -> str:
     print("\nLet me think about that...")
 
     answer = openai.Completion.create(
-        engine="text-davinci-003", prompt=prompt, max_tokens=2048
+        engine=openai.engine, prompt=prompt, max_tokens=2048
     )
     return answer.choices[0].text
 
