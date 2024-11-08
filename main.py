@@ -1,34 +1,41 @@
+#
 # Author: Jose Cerrejon
-# Email: contact at ulysess dot gmail dot com
+# Email: contact at ulysess_.gmail_com
 # License: MIT
-# Version: 0.1.4
+#
+import os
 
-import openai
-import config
+from openai import OpenAI
 
-(openai.api_key, openai.engine) = (config.OPENAI_API_KEY, "gpt-3.5-turbo-instruct")
+from src.helper.dot_env_loader import DotenvLoader
+from src.helper.utils import Utils
 
-print(
-    """
-d8888b. d888888b db   dD  .d88b.  
-88  `8D   `88'   88 ,8P' .8P  Y8. 
-88oodD'    88    88,8P   88    88 
-88~~~      88    88`8b   88    88 
-88        .88.   88 `88. `8b  d8' 
-88      Y888888P YP   YD  `Y88P'  
+DotenvLoader.load(".env")
+APP_VERSION = "0.2.QRS"
+MODEL_NAME = {"text": "gpt-4o-mini", "image": "dall-e-3"}
 
-Version 0.2.PQR
-
-Hi! I'm PIKO!. The new AI created from the collective mind of trillons of flies.
-Type [exit] to exit the program or [imagine] to get a picture something you input.
-"""
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
 
-def open_default_browser(url):
-    import webbrowser
+def print_header():
+    print(f"""
+    d8888b. d888888b db   dD  .d88b.  
+    88  `8D   `88'   88 ,8P' .8P  Y8. 
+    88oodD'    88    88,8P   88    88 
+    88~~~      88    88`8b   88    88 
+    88        .88.   88 `88. `8b  d8' 
+    88      Y888888P YP   YD  `Y88P'  
 
-    webbrowser.open_new_tab(url)
+    Version: {APP_VERSION}
+
+Hi! I'm PIKO!. 🪰
+
+The new AI created from the collective mind of trillons of flies.
+
+Type [exit] to exit the program or [imagine] to get a picture about something you want.
+""")
 
 
 def draw() -> str:
@@ -40,28 +47,51 @@ def draw() -> str:
         exit()
 
     print("\nLet me draw something about that...\n")
-    answer = openai.Image.create(prompt=prompt, size="1024x1024")
-    url = answer["data"][0]["url"]
-    open_default_browser(url)
+    answer = client.images.generate(
+        model=MODEL_NAME["image"],
+        prompt=prompt,
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
+    url = answer.data[0].url
+    Utils.open_default_browser(url)
 
     return url
 
 
-def answer(prompt) -> str:
+def answer(input) -> str:
+    prompt = f"""
+    Input: {input}
+    
+    Based on the above information, answer the input with humor (you are a millions of flies).
+    """
+
+    response = client.chat.completions.create(
+        model=MODEL_NAME["text"],
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an AI assistant tasked with answering with hummor.",
+            },
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0,
+    )
     print("\nLet me think about that...")
 
-    answer = openai.Completion.create(
-        engine=openai.engine, prompt=prompt, max_tokens=2048
-    )
-    return answer.choices[0].text
+    return response.choices[0].message.content.strip()
 
 
-while True:
-    prompt = input("\nBuzZ: ")
+if __name__ == "__main__":
+    print_header()
 
-    if prompt == "exit":
-        print("\nBye! I hope I was helpful!")
-        break
+    while True:
+        prompt = input("\nBuzZ: ")
 
-    response = answer(prompt) if prompt != "imagine" else draw()
-    print(response)
+        if prompt == "exit":
+            print("\nBye! I hope I was helpful! Bzzz 🪰")
+            break
+
+        response = answer(prompt) if prompt != "imagine" else draw()
+        print(response)
