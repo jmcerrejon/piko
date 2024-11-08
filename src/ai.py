@@ -8,7 +8,15 @@ from src.helper.utils import Utils
 class AI:
     def __init__(self):
         self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-        self.model_name = {"text": "gpt-4o-mini", "image": "dall-e-3"}
+        self.model_type = {
+            "text": {"model_name": "gpt-4o-mini"},
+            "image": {
+                "model_name": "dall-e-3",
+                "size": "1024x1024",  # ['256x256', '512x512', '1024x1024', '1024x1792', '1792x1024']
+                "quality": "standard",
+                "n": 1,
+            },
+        }
 
     def draw(self) -> str:
         print("\nYou want a picture!")
@@ -20,11 +28,11 @@ class AI:
 
         print("\nLet me draw something about that...\n")
         answer = self.client.images.generate(
-            model=self.model_name["image"],
+            model=self.model_type["image"]["model_name"],
             prompt=prompt,
-            size="1024x1024",
-            quality="standard",
-            n=1,
+            size=self.model_type["image"]["size"],
+            quality=self.model_type["image"]["quality"],
+            n=self.model_type["image"]["n"],
         )
         url = answer.data[0].url
         Utils.open_default_browser(url)
@@ -39,7 +47,7 @@ class AI:
         """
 
         response = self.client.chat.completions.create(
-            model=self.model_name["text"],
+            model=self.model_type["text"]["model_name"],
             messages=[
                 {
                     "role": "system",
