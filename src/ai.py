@@ -28,11 +28,11 @@ class AI:
 
         print("\nLet me draw something about that...\n")
         answer = self.client.images.generate(
-            model=self.model_type["image"]["model_name"],
+            model=self.model_type.get("image").get("model_name"),
             prompt=prompt,
-            size=self.model_type["image"]["size"],
-            quality=self.model_type["image"]["quality"],
-            n=self.model_type["image"]["n"],
+            size=self.model_type.get("image").get("size"),
+            quality=self.model_type.get("image").get("quality"),
+            n=self.model_type.get("image").get("n"),
         )
         url = answer.data[0].url
         Utils.open_default_browser(url)
@@ -47,7 +47,7 @@ class AI:
         """
 
         response = self.client.chat.completions.create(
-            model=self.model_type["text"]["model_name"],
+            model=self.model_type.get("text").get("model_name"),
             messages=[
                 {
                     "role": "system",
