@@ -4,7 +4,9 @@
 
 I'm PIKO! The new AI created from the collective mind of trillions of flies.
 
-## Table of Contents
+🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰🪰
+
+## Table of Contents 🪰
 
 -   [Introduction](#introduction)
 -   [Prerequisites](#prerequisites)
@@ -88,4 +90,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 -   [OpenAI Python Library](https://github.com/openai/openai-python)
 
-Made with :heart: using _Python_.
+Made with :heart: and 🪰 using _Python_.
