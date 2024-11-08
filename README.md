@@ -1,6 +1,6 @@
 # PIKO
 
-![piko.png](res/piko.png)
+![piko.png](res/piko.jpg)
 
 I'm PIKO! The new AI created from the collective mind of trillions of flies.
 
