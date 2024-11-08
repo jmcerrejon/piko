@@ -1,45 +1,91 @@
 # PIKO
 
-![piko.png](res/piko.png)
+![piko.png](res/piko.jpg)
 
-I'm PIKO!. The new AI created from the collective mind of trillons of flies.
+I'm PIKO! The new AI created from the collective mind of trillions of flies.
 
-## Install dependencies and add your API key to file config.py
+## Table of Contents
 
-* python3 python3-pip
+-   [Introduction](#introduction)
+-   [Prerequisites](#prerequisites)
+-   [Installation](#installation)
+-   [Setting Up](#setting-up)
+-   [Usage](#usage)
+-   [TODO](#todo)
+-   [License](#license)
+-   [Reference Links](#reference-links)
 
-## Creation and activation of venv
+## Introduction
+
+PIKO is an AI designed to harness the collective intelligence of trillions of flies. This README will guide you through the process of setting up and using PIKO.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+-   Python 3
+
+## Installation
+
+### Install Dependencies
+
+To install the necessary dependencies, run:
+
+```sh
+python3 -m pip install --upgrade pip
+```
+
+### Create and Activate Virtual Environment
+
+Create a virtual environment to manage dependencies & activate the virtual environment:
 
 ```sh
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-## Installing requirements
+### Install Requirements
+
+Install the required Python packages:
 
 ```sh
- python3 -m pip install --upgrade -r requirements.txt
+pip install -r requirements.txt
 ```
 
-## Setting up
+## Setting Up
 
-Copy base.ini.example to base.ini and add your API key.
+Copy the example environment file `.env.example` to `.env` and add your _API keys_:
 
-And now:
+```sh
+cp .env.example .env
+```
 
-```bash
-    python3 -u main.py
+Edit the `.env` file to include your _API key_.
+
+## Usage
+
+To start using PIKO, run the following command:
+
+```sh
+python3 -u main.py
 ```
 
 ## TODO
 
-* [ ] External config files.
-* [ ] CLI mode.
-* [ ] Add more commands.
-* [ ] GUI mode?. Maybe with PySimpleGUI.
+-   [x] Add .env file.
+-   [x] CLI mode.
+-   [ ] Add testing.
+-   [ ] Add other models.
+-   [ ] Add more commands.
+-   [ ] GUI/TUI mode.
+-   [ ] Refactor stuffs.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Reference Links
 
-* <https://github.com/openai/openai-python>
+-   [OpenAI Python Library](https://github.com/openai/openai-python)
 
-Made with :heart: using Python.
+Made with :heart: using _Python_.
