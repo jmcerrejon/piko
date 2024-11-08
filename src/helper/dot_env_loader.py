@@ -6,7 +6,7 @@ class DotenvLoader:
     A class to load environment variables from a .env file.
 
     Methods:
-        load(file_path):
+        load(file_path: str):
             Loads the environment variables from the .env file into the os.environ dictionary.
 
     Usage:
@@ -16,7 +16,7 @@ class DotenvLoader:
     """
 
     @staticmethod
-    def load(file_path):
+    def load(file_path: str) -> None:
         with open(file_path) as f:
             for line in f:
                 if line.strip() and not line.startswith("#"):

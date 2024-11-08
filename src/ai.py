@@ -39,7 +39,7 @@ class AI:
 
         return url
 
-    def answer(self, input) -> str:
+    def answer(self, input: str) -> str:
         prompt = f"""
         Input: {input}
         

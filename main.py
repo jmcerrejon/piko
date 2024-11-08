@@ -11,7 +11,7 @@ APP_VERSION = "0.2.QRS"
 MODEL_NAME = {"text": "gpt-4o-mini", "image": "dall-e-3"}
 
 
-def print_header():
+def print_header() -> None:
     print(f"""
     d8888b. d888888b db   dD  .d88b.  
     88  `8D   `88'   88 ,8P' .8P  Y8. 

@@ -1,6 +1,12 @@
 class Utils:
+    """
+    A utility class that provides various helper methods.
+    Methods:
+        open_default_browser(url: str) -> None:
+    """
+
     @staticmethod
-    def open_default_browser(url):
+    def open_default_browser(url: str) -> None:
         """
         Open the specified URL in the default web browser.
 
