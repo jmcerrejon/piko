@@ -1,5 +1,5 @@
 .DS_Store
 venv
 .venv
-config.py
+.env
 settings.json
