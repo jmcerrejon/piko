@@ -1,21 +1,42 @@
 import os
+from dataclasses import dataclass, field
+from typing import Any, Dict
 
 from openai import OpenAI
 
-from src.helper.utils import Utils
+from src.helpers.utils import Utils
+
+
+@dataclass(frozen=True)
+class AIConstants:
+    DEFAULT_QUALITY: str = "standard"
+    DEFAULT_SIZE: str = "1024x1024"
+    DEFAULT_TEMPERATURE: int = 0
+    DEFAULT_N: int = 1
+
+    TEXT_MODEL: Dict[str, Any] = field(
+        default_factory=lambda: {
+            "model_name": "gpt-4o-mini",
+            "temperature": AIConstants.DEFAULT_TEMPERATURE,
+        }
+    )
+
+    IMAGE_MODEL: Dict[str, Any] = field(
+        default_factory=lambda: {
+            "model_name": "dall-e-3",
+            "size": AIConstants.DEFAULT_SIZE,
+            "quality": AIConstants.DEFAULT_QUALITY,
+        }
+    )
 
 
 class AI:
-    def __init__(self):
+    def __init__(self) -> None:
+        self.constants = AIConstants()
         self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-        self.model_type = {
-            "text": {"model_name": "gpt-4o-mini"},
-            "image": {
-                "model_name": "dall-e-3",
-                "size": "1024x1024",  # ['256x256', '512x512', '1024x1024', '1024x1792', '1792x1024']
-                "quality": "standard",
-                "n": 1,
-            },
+        self.model_type: Dict[str, Dict[str, Any]] = {
+            "text": self.constants.TEXT_MODEL,
+            "image": self.constants.IMAGE_MODEL,
         }
 
     def draw(self) -> str:
@@ -28,13 +49,16 @@ class AI:
 
         print("\nLet me draw something about that...\n")
         answer = self.client.images.generate(
-            model=self.model_type.get("image").get("model_name"),
+            model=self.model_type.get("image", {}).get("model_name"),
             prompt=prompt,
-            size=self.model_type.get("image").get("size"),
-            quality=self.model_type.get("image").get("quality"),
-            n=self.model_type.get("image").get("n"),
+            size=self.model_type.get("image", {}).get("size"),
+            quality=self.model_type.get("image", {}).get("quality"),  # type: ignore
+            n=self.model_type.get("image", {}).get("n"),
         )
         url = answer.data[0].url
+        if url is None or not url.startswith("http"):
+            return ""
+
         Utils.open_default_browser(url)
 
         return url
@@ -47,7 +71,7 @@ class AI:
         """
 
         response = self.client.chat.completions.create(
-            model=self.model_type.get("text").get("model_name"),
+            model=self.model_type.get("text", {}).get("model_name"),  # type: ignore
             messages=[
                 {
                     "role": "system",
@@ -55,8 +79,10 @@ class AI:
                 },
                 {"role": "user", "content": prompt},
             ],
-            temperature=0,
+            temperature=self.model_type.get("text", {}).get("temperature"),
         )
-        print("\nLet me think about that...")
+        content = response.choices[0].message.content
+        if content is None:
+            return "Sorry, I couldn't come up with a humorous response."
 
-        return response.choices[0].message.content.strip()
+        return content.strip()

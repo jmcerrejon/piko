@@ -3,12 +3,16 @@
 # Email: contact at ulysess_.gmail_com
 # License: MIT
 #
+import signal
+import sys
+import typing
+
 from src.ai import AI
-from src.helper.dot_env_loader import DotenvLoader
+from src.helpers.dot_env_loader import DotenvLoader
 
 DotenvLoader.load(".env")
 APP_VERSION = "0.2.QRS"
-MODEL_NAME = {"text": "gpt-4o-mini", "image": "dall-e-3"}
+_BYE_MESSAGE = "\nBye! I hope I was helpful! Bzzz 🪰"
 
 
 def print_header() -> None:
@@ -30,16 +34,22 @@ Type [exit] to exit the program or [imagine] to get a picture about something yo
 """)
 
 
+def signal_handler(sig: int, frame: typing.Any) -> None:
+    print(_BYE_MESSAGE)
+    sys.exit(0)
+
+
 if __name__ == "__main__":
     ai = AI()
 
+    signal.signal(signal.SIGINT, signal_handler)
     print_header()
 
     while True:
         prompt = input("\nBuzZ: ")
 
         if prompt == "exit":
-            print("\nBye! I hope I was helpful! Bzzz 🪰")
+            print(_BYE_MESSAGE)
             break
 
         response = ai.answer(prompt) if prompt != "imagine" else ai.draw()

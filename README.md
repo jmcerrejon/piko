@@ -13,6 +13,7 @@ I'm PIKO! The new AI created from the collective mind of trillions of flies.
 -   [Installation](#installation)
 -   [Setting Up](#setting-up)
 -   [Usage](#usage)
+-   [Testing](#testing)
 -   [TODO](#todo)
 -   [License](#license)
 -   [Reference Links](#reference-links)
@@ -72,11 +73,19 @@ To start using PIKO, run the following command:
 python3 -u main.py
 ```
 
+## Testing
+
+To run the tests, run the following command:
+
+```sh
+python -m unittest discover -s tests/units
+```
+
 ## TODO
 
 -   [x] Add .env file.
 -   [x] CLI mode.
--   [ ] Add testing.
+-   [ ] Add testing (WIP).
 -   [ ] Add other models.
 -   [ ] Add more commands.
 -   [ ] GUI/TUI mode.
