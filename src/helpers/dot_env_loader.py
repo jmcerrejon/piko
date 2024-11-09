@@ -17,6 +17,10 @@ class DotenvLoader:
 
     @staticmethod
     def load(file_path: str) -> None:
+        if not os.path.exists(file_path):
+            print(f"The file {file_path} does not exist. Please, add a .env file.")
+            exit(0)
+
         with open(file_path) as f:
             for line in f:
                 if line.strip() and not line.startswith("#"):
