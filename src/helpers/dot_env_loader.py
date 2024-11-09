@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 
 class DotenvLoader:
@@ -17,7 +18,8 @@ class DotenvLoader:
 
     @staticmethod
     def load(file_path: str) -> None:
-        if not os.path.exists(file_path):
+        path = Path(file_path)
+        if not path.exists():
             print(f"The file {file_path} does not exist. Please, add a .env file.")
             exit(0)
 
