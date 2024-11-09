@@ -4,11 +4,10 @@
 # License: MIT
 #
 from src.ai import AI
-from src.helper.dot_env_loader import DotenvLoader
+from src.helpers.dot_env_loader import DotenvLoader
 
 DotenvLoader.load(".env")
 APP_VERSION = "0.2.QRS"
-MODEL_NAME = {"text": "gpt-4o-mini", "image": "dall-e-3"}
 
 
 def print_header() -> None:
