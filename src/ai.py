@@ -26,6 +26,7 @@ class AIConstants:
             "model_name": "dall-e-3",
             "size": AIConstants.DEFAULT_SIZE,
             "quality": AIConstants.DEFAULT_QUALITY,
+            "n": AIConstants.DEFAULT_N,
         }
     )
 
