@@ -1,8 +1,20 @@
 import os
+import subprocess
 from dataclasses import dataclass, field
 from typing import Any, Dict
 
-from openai import OpenAI
+try:
+    import openai
+except ImportError:
+    print("Installing openai module...", sep="")
+    subprocess.run(
+        ["pip", "install", "openai"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    print("Done!\n")
+finally:
+    from openai import OpenAI
 
 from src.helpers.utils import Utils
 
@@ -87,3 +99,6 @@ class AI:
             return "Sorry, I couldn't come up with a humorous response."
 
         return content.strip()
+
+    def __repr__(self) -> str:
+        return str(f"({__name__}) parameters: {self.model_type}")

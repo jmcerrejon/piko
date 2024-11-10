@@ -47,13 +47,9 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### Install Requirements
+### Install Requirements? It's not necessary!
 
-Install the required Python packages:
-
-```sh
-pip install -r requirements.txt
-```
+The script will install the necessary dependencies when It's run for the first time. 🤯
 
 ## Setting Up
 
