@@ -19,13 +19,13 @@ I'm PIKO! The new AI created from the collective mind of trillions of flies.
 
 ## Introduction
 
-**PIKO** is an AI designed to harness the collective intelligence of trillions of flies. This `README` will guide you through the process of setting up and using _PIKO_.
+**PIKO** is an AI designed to harness the collective intelligence of trillions of flies. This _README_ will guide you through the process of setting up and using _PIKO_.
 
 ## Installation
 
 ### Install Requirements? It's not necessary!
 
-The script will install the necessary dependencies when It's run for the first time. 🤯
+The script will install the necessary dependencies when it runs for the first time. 🤯
 
 ## Setting Up
 
@@ -35,11 +35,12 @@ Copy the example environment file `.env.example` to `.env` and add your _API key
 cp .env.example .env
 ```
 
-Edit the `.env` file to include your _API key_.
+-   Edit the `.env` file to include your _API keys_.
+-   Edit the `.env` file to set the library you want to use: "openai" (default) or "gemini".
 
 ## Usage
 
-The script will make a virtual environment If doesn't exists and install the necessary dependencies for the first time.
+The script will create a virtual environment if it doesn't exist and install the necessary dependencies for the first time.
 
 To start using PIKO, run the following command:
 
@@ -61,11 +62,11 @@ python -m unittest discover -s tests/units
 -   [x] CLI mode.
 -   [x] Check venv and install requirements automatically.
 -   [x] Add testing.
--   [ ] Add other models.
+-   [ ] Add other models: Now supports _OpenAI ChatGPT_ and _Google Gemini_ (WIP).
 -   [ ] Detect and use your local language.
 -   [ ] Add more commands.
 -   [ ] GUI/TUI mode.
--   [ ] Refactor stuffs.
+-   [ ] Refactor stuff.
 
 ## License
 
@@ -75,4 +76,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 -   [OpenAI Python Library](https://github.com/openai/openai-python)
 
-Made with :heart: and 🪰 using _Python_.
+Made with [❤️, 🪰, 🐍, 🤖]

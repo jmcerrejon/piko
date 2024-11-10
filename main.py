@@ -3,6 +3,7 @@
 # Email: contact at ulysess_.gmail_com
 # License: MIT
 #
+import os
 import signal
 import sys
 import typing
@@ -11,8 +12,9 @@ from src.ai import AI
 from src.helpers.dot_env_loader import DotenvLoader
 
 DotenvLoader.load(".env")
-APP_VERSION = "0.3.STV"
+APP_VERSION = "1.0.ABC"
 _BYE_MESSAGE = "\nBye! I hope I was helpful! Bzzz 🪰"
+DEFAULT_LIBRARY = "openai"
 
 
 def print_header() -> None:
@@ -40,7 +42,7 @@ def signal_handler(sig: int, frame: typing.Any) -> None:
 
 
 if __name__ == "__main__":
-    ai = AI()
+    ai = AI(os.environ.get("USE_LIBRARY", DEFAULT_LIBRARY))
 
     signal.signal(signal.SIGINT, signal_handler)
     print_header()
