@@ -9,7 +9,6 @@ I'm PIKO! The new AI created from the collective mind of trillions of flies.
 ## Table of Contents 🪰
 
 -   [Introduction](#introduction)
--   [Prerequisites](#prerequisites)
 -   [Installation](#installation)
 -   [Setting Up](#setting-up)
 -   [Usage](#usage)
@@ -20,32 +19,9 @@ I'm PIKO! The new AI created from the collective mind of trillions of flies.
 
 ## Introduction
 
-PIKO is an AI designed to harness the collective intelligence of trillions of flies. This README will guide you through the process of setting up and using PIKO.
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed:
-
--   Python 3
+**PIKO** is an AI designed to harness the collective intelligence of trillions of flies. This `README` will guide you through the process of setting up and using _PIKO_.
 
 ## Installation
-
-### Install Dependencies
-
-To install the necessary dependencies, run:
-
-```sh
-python3 -m pip install --upgrade pip
-```
-
-### Create and Activate Virtual Environment
-
-Create a virtual environment to manage dependencies & activate the virtual environment:
-
-```sh
-python3 -m venv venv
-source venv/bin/activate
-```
 
 ### Install Requirements? It's not necessary!
 
@@ -62,6 +38,8 @@ cp .env.example .env
 Edit the `.env` file to include your _API key_.
 
 ## Usage
+
+The script will make a virtual environment If doesn't exists and install the necessary dependencies for the first time.
 
 To start using PIKO, run the following command:
 
@@ -81,8 +59,10 @@ python -m unittest discover -s tests/units
 
 -   [x] Add .env file.
 -   [x] CLI mode.
+-   [x] Check venv and install requirements automatically.
 -   [ ] Add testing (WIP).
 -   [ ] Add other models.
+-   [ ] Detect and use your local language.
 -   [ ] Add more commands.
 -   [ ] GUI/TUI mode.
 -   [ ] Refactor stuffs.

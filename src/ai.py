@@ -3,7 +3,10 @@ import subprocess
 from dataclasses import dataclass, field
 from typing import Any, Dict
 
+from src.helpers.utils import Utils
+
 try:
+    Utils.create_virtualenv()
     import openai
 except ImportError:
     print("Installing openai module...", sep="")
@@ -13,8 +16,7 @@ except ImportError:
         stderr=subprocess.DEVNULL,
     )
     print("Done!\n")
-finally:
-    from openai import OpenAI
+from openai import OpenAI
 
 from src.helpers.utils import Utils
 
