@@ -11,7 +11,7 @@ from src.ai import AI
 from src.helpers.dot_env_loader import DotenvLoader
 
 DotenvLoader.load(".env")
-APP_VERSION = "0.2.QRS"
+APP_VERSION = "0.3.STV"
 _BYE_MESSAGE = "\nBye! I hope I was helpful! Bzzz 🪰"
 
 
