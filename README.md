@@ -60,7 +60,7 @@ python -m unittest discover -s tests/units
 -   [x] Add .env file.
 -   [x] CLI mode.
 -   [x] Check venv and install requirements automatically.
--   [ ] Add testing (WIP).
+-   [x] Add testing.
 -   [ ] Add other models.
 -   [ ] Detect and use your local language.
 -   [ ] Add more commands.
