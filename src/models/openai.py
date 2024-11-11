@@ -3,7 +3,9 @@ import subprocess
 from dataclasses import dataclass, field
 from typing import Any, Dict
 
+import src.helpers.utils
 from src.helpers.utils import Utils
+from src.models.interfaces import Answerable, Drawable
 
 try:
     Utils.create_virtualenv()
@@ -43,7 +45,7 @@ class AIConstants:
     )
 
 
-class OpenAI:
+class OpenAI(Drawable, Answerable):
     def __init__(self) -> None:
         self.constants = AIConstants()
         self.client = OpenAIClient(api_key=os.environ.get("OPENAI_API_KEY"))
@@ -51,6 +53,7 @@ class OpenAI:
             "text": self.constants.TEXT_MODEL,
             "image": self.constants.IMAGE_MODEL,
         }
+        src.helpers.utils.additional_header_message = "Type: imagine + [Enter] to get a prompt and make an image about something you want."
 
     def draw(self) -> str:
         print("\nYou want a picture!")

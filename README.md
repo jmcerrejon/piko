@@ -62,7 +62,7 @@ python -m unittest discover -s tests/units
 -   [x] CLI mode.
 -   [x] Check venv and install requirements automatically.
 -   [x] Add testing.
--   [ ] Add other models: Now supports _OpenAI ChatGPT_ and _Google Gemini_ (WIP).
+-   [x] Add AI Libraries: Now supports _OpenAI ChatGPT_ and _Google Gemini_.
 -   [ ] Detect and use your local language.
 -   [ ] Add more commands.
 -   [ ] GUI/TUI mode.

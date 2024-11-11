@@ -4,10 +4,11 @@ from dataclasses import dataclass, field
 from typing import Any, Dict
 
 from src.helpers.utils import Utils
+from src.models.interfaces import Answerable
 
 try:
     Utils.create_virtualenv()
-    import google_generativeai
+    import google.generativeai  # noqa: F401
 except ImportError:
     print("Installing the google-generativeai library...", sep="")
     subprocess.run(
@@ -43,7 +44,7 @@ class AIConstants:
     )
 
 
-class Gemini:
+class Gemini(Answerable):
     def __init__(self) -> None:
         self.constants = AIConstants()
         self.client = genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
@@ -53,28 +54,7 @@ class Gemini:
         }
 
     def draw(self) -> str:
-        print("\nYou want a picture!")
-        prompt = input("\nImagine... ")
-
-        if prompt == "exit":
-            print("\nBye! I hope I was helpful!")
-            exit()
-
-        print("\nLet me draw something about that...\n")
-        answer = self.client.images.generate(
-            model=self.model_type.get("image", {}).get("model_name"),
-            prompt=prompt,
-            size=self.model_type.get("image", {}).get("size"),
-            quality=self.model_type.get("image", {}).get("quality"),  # type: ignore
-            n=self.model_type.get("image", {}).get("n"),
-        )
-        url = str(answer.data[0].url)
-        if url is None or not url.startswith("http"):
-            return ""
-
-        Utils.open_default_browser(url)
-
-        return url
+        return f"Sorry, I can't draw images with {self.__class__.__name__} yet."
 
     def answer(self, input: str) -> str:
         prompt = f"""
