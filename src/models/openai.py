@@ -15,7 +15,7 @@ except ImportError:
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-    print("¡Hecho!\n")
+    print("Done!\n")
 from openai import OpenAI as OpenAIClient
 
 
