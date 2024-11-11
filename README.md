@@ -63,7 +63,7 @@ python -m unittest discover -s tests/units
 -   [x] Check venv and install requirements automatically.
 -   [x] Add testing.
 -   [x] Add AI Libraries: Now supports _OpenAI ChatGPT_ and _Google Gemini_.
--   [ ] Detect and use your local language.
+-   [x] Detect and use your local language.
 -   [ ] Add more commands.
 -   [ ] GUI/TUI mode.
 -   [ ] Refactor stuff.

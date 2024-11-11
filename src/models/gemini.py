@@ -48,9 +48,7 @@ class Gemini(Answerable):
         """
 
         model = genai.GenerativeModel(self.model_type.get("text", {}).get("model_name"))
-        response = model.generate_content(
-            ["You are an AI assistant tasked with answering with humor.", prompt]
-        )
+        response = model.generate_content([Utils.get_message_content(), prompt])
 
         content = str(response.text)
         if content is None:

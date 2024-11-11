@@ -91,7 +91,7 @@ class OpenAI(Drawable, Answerable):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an AI assistant tasked with answering with humor.",
+                    "content": Utils.get_message_content(),
                 },
                 {"role": "user", "content": prompt},
             ],

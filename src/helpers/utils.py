@@ -15,6 +15,8 @@ class Utils:
             Generate a header message with the given application version.
     """
 
+    __DEFAULT_LOCALE = "en_US"
+
     @staticmethod
     def open_default_browser(url: str) -> None:
         """
@@ -56,6 +58,10 @@ class Utils:
 
     @staticmethod
     def get_header_message(app_version: str) -> str:
+        """
+        Generate a header message with the given application version.
+        """
+
         return f"""
     d8888b. d888888b db   dD  .d88b.  
     88  `8D   `88'   88 ,8P' .8P  Y8. 
@@ -64,11 +70,36 @@ class Utils:
     88        .88.   88 `88. `8b  d8' 
     88      Y888888P YP   YD  `Y88P'  
 
-    Version: {app_version}
+Version: {app_version}
 
-    Hi! I'm PIKO!. 🪰
+Hi! I'm PIKO!. 🪰
 
-    The new AI created from the collective mind of trillons of flies.
+The new AI created from the collective mind of trillons of flies.
 
-    Type [exit] to exit the program. {additional_header_message}
-    """
+I'm going to answer your questions using your language ({Utils.get_locale()}). You can use it, too!
+
+Type [exit] to exit the program. {additional_header_message}
+"""
+
+    @staticmethod
+    def get_locale() -> str:
+        """
+        Get the locale of the system.
+
+        Returns:
+            str: The locale of the system.
+        """
+        import locale
+
+        return str(locale.getdefaultlocale()[0] or Utils.__DEFAULT_LOCALE)
+
+    @staticmethod
+    def get_message_content() -> str:
+        """
+        Get the message content from the response for the AI.
+
+        Returns:
+            str: The message content.
+        """
+
+        return f"You are an AI assistant tasked with answering with humor. Use {Utils.get_locale()} as output language."

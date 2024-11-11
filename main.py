@@ -13,7 +13,7 @@ from src.helpers.dot_env_loader import DotenvLoader
 from src.helpers.utils import Utils
 
 DotenvLoader.load(".env")
-APP_VERSION = "1.1.ABC"
+APP_VERSION = "1.1.CDE"
 BYE_MESSAGE = "\nBye! I hope I was helpful! Bzzz 🪰"
 DEFAULT_LIBRARY = "openai"
 
