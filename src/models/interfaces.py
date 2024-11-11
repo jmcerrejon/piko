@@ -1,4 +1,3 @@
-# src/models/interfaces.py
 from abc import ABC, abstractmethod
 
 
