@@ -22,24 +22,9 @@ import google.generativeai as genai
 
 @dataclass(frozen=True)
 class AIConstants:
-    DEFAULT_QUALITY: str = "standard"
-    DEFAULT_SIZE: str = "1024x1024"
-    DEFAULT_TEMPERATURE: int = 0
-    DEFAULT_N: int = 1
-
     TEXT_MODEL: Dict[str, Any] = field(
         default_factory=lambda: {
             "model_name": "gemini-1.5-flash",
-            "temperature": AIConstants.DEFAULT_TEMPERATURE,
-        }
-    )
-
-    IMAGE_MODEL: Dict[str, Any] = field(
-        default_factory=lambda: {
-            "model_name": "dall-e-3",
-            "size": AIConstants.DEFAULT_SIZE,
-            "quality": AIConstants.DEFAULT_QUALITY,
-            "n": AIConstants.DEFAULT_N,
         }
     )
 
@@ -50,7 +35,6 @@ class Gemini(Answerable):
         self.client = genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
         self.model_type: Dict[str, Dict[str, Any]] = {
             "text": self.constants.TEXT_MODEL,
-            "image": self.constants.IMAGE_MODEL,
         }
 
     def draw(self) -> str:
