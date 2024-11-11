@@ -13,8 +13,8 @@ from src.helpers.dot_env_loader import DotenvLoader
 from src.helpers.utils import Utils
 
 DotenvLoader.load(".env")
-APP_VERSION = "1.0.CDE"
-_BYE_MESSAGE = "\nBye! I hope I was helpful! Bzzz 🪰"
+APP_VERSION = "1.1.ABC"
+BYE_MESSAGE = "\nBye! I hope I was helpful! Bzzz 🪰"
 DEFAULT_LIBRARY = "openai"
 
 
@@ -23,7 +23,7 @@ def print_header() -> None:
 
 
 def signal_handler(sig: int, frame: typing.Any) -> None:
-    print(_BYE_MESSAGE)
+    print(BYE_MESSAGE)
     sys.exit(0)
 
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         prompt = input("\nBuzZ: ")
 
         if prompt == "exit":
-            print(_BYE_MESSAGE)
+            print(BYE_MESSAGE)
             break
 
         response = ai.answer(prompt) if prompt != "imagine" else ai.draw()  # type: ignore
