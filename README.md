@@ -75,5 +75,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Reference Links
 
 -   [OpenAI Python Library](https://github.com/openai/openai-python)
+-   [Gemini API quickstart](https://ai.google.dev/gemini-api/docs/quickstart?lang=python)
 
 Made with [❤️, 🪰, 🐍, 🤖]
