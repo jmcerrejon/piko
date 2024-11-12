@@ -91,7 +91,7 @@ Type [exit] to exit the program. {additional_header_message}
         """
         import locale
 
-        return str(locale.getdefaultlocale()[0] or Utils.__DEFAULT_LOCALE)
+        return str(locale.getlocale()[0] or Utils.__DEFAULT_LOCALE)
 
     @staticmethod
     def get_message_content() -> str:
