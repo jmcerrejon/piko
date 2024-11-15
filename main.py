@@ -33,12 +33,7 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
     print_header()
 
-    while True:
-        prompt = input("\nBuzZ: ")
-
-        if prompt == "exit":
-            print(BYE_MESSAGE)
-            break
-
+    while (prompt := input("\nBuzz: ")) != "exit":
         response = ai.answer(prompt) if prompt != "imagine" else ai.draw()  # type: ignore
         print(response)
+    print(BYE_MESSAGE)
