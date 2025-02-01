@@ -36,7 +36,7 @@ cp .env.example .env
 ```
 
 -   Edit the `.env` file to include your _API keys_.
--   Edit the `.env` file to set the library you want to use: "openai" (default) or "gemini".
+-   Edit the `.env` file to set the library you want to use: "ollama", "openai" (default) or "gemini".
 
 ## Usage
 
@@ -62,7 +62,7 @@ python -m unittest discover -s tests/units
 -   [x] CLI mode.
 -   [x] Check venv and install requirements automatically.
 -   [x] Add testing.
--   [x] Add AI Libraries: Now supports _OpenAI ChatGPT_ and _Google Gemini_.
+-   [x] Add AI Libraries: Now supports _Ollama, OpenAI ChatGPT_ and _Google Gemini_.
 -   [x] Detect and use your local language.
 -   [ ] Add more commands.
 -   [ ] GUI/TUI mode.
