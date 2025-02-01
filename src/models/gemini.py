@@ -24,7 +24,7 @@ import google.generativeai as genai
 class AIConstants:
     TEXT_MODEL: Dict[str, Any] = field(
         default_factory=lambda: {
-            "model_name": "gemini-1.5-flash",
+            "model_name": os.environ.get("MODEL_NAME"),
         }
     )
 
