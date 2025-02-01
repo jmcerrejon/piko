@@ -30,7 +30,7 @@ class AIConstants:
 
     TEXT_MODEL: Dict[str, Any] = field(
         default_factory=lambda: {
-            "model_name": "gpt-4o-mini",
+            "model_name": os.environ.get("MODEL_NAME"),
             "temperature": AIConstants.DEFAULT_TEMPERATURE,
         }
     )
@@ -88,13 +88,13 @@ class OpenAI(Drawable, Answerable):
 
         response = self.client.chat.completions.create(
             model=self.model_type.get("text", {}).get("model_name"),  # type: ignore
-            messages=[
-                {
-                    "role": "system",
-                    "content": Utils.get_message_content(),
-                },
-                {"role": "user", "content": prompt},
-            ],
+            messages=[{
+                "role": "system",
+                "content": Utils.get_message_content(),
+            }, {
+                "role": "user",
+                "content": prompt
+            }],
             temperature=self.model_type.get("text", {}).get("temperature"),
         )
         content = response.choices[0].message.content
